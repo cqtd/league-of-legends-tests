@@ -7,8 +7,11 @@ public class HeroCharacterController : MonoBehaviour
 
     public Vector3 forwardVector;
     public float speed = 10.0f;
+    public float addForceParameter = 1.0f;
+    public float velocityParameter = 1.0f;
 
     bool isMoving;
+    public bool addForce;
     
     // Start is called before the first frame update
     void Start()
@@ -21,8 +24,14 @@ public class HeroCharacterController : MonoBehaviour
     {
         if (isMoving)
         {
-            rb.velocity = forwardVector * speed * Time.deltaTime; 
-            // rb.AddForce();
+            if (addForce)
+            {
+                rb.AddForce(forwardVector * speed * Time.deltaTime * addForceParameter);
+            }
+            else
+            {
+                rb.velocity = forwardVector * speed * velocityParameter; 
+            }
         }
     }
 
