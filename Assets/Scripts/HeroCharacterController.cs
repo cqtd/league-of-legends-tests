@@ -1,33 +1,43 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using DG.Tweening;
+using UnityEngine;
 
 public class HeroCharacterController : MonoBehaviour
 {
+    [Header("Component")]
     public HeroAnimController animController;
     public Rigidbody rb;
-
-    public Vector3 forwardVector;
-    public float speed = 10.0f;
-    public float addForceParameter = 1.0f;
-    public float velocityParameter = 1.0f;
-    public float rotationParameter = 10.0f;
     
-    public bool addForce;
+    [Header("Bindings")]
+    public KeyCode stopKey = KeyCode.S;
 
+    [Header("Parameter")]
+    [Range(300, 500)] public float speed = 350.0f;
+    [Range(0.001f, 1)] public float velocityParameter = 0.008f;
+    [Range(5, 20)] public float rotationParameter = 10.0f;
+    [Range(-2, 2)] public float stopParameter = 1f;
+
+    [Space]
     public float holdRadius = 0.2f;
     public float threshold = 1f;
 
+    [Header("Particle")]
+    public bool spawnDestination;
+    public GameObject destDecalprefab;
+    public float decalInitialScale = 0.08f;
+    public float decalDuration = 0.2f;
+    
+    [Header("Debug")]
     public bool debugger;
     public GameObject destinationSphere;
-    public float stopParameter = 0.1f;
+    public float debugOffset = 0.01f;
     
     bool isArrived = true;
     bool isMoving;
     bool mouseDown = false;
     
     Vector3 destination;
-
-    public KeyCode stopKey = KeyCode.S;
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetKeyDown(stopKey))
@@ -38,6 +48,11 @@ public class HeroCharacterController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             mouseDown = true;
+            
+            if (spawnDestination)
+            {
+                StartCoroutine(Spawn());
+            }
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -47,8 +62,6 @@ public class HeroCharacterController : MonoBehaviour
         
         if (mouseDown)
         {
-            Idle();
-            
             Vector3 dest = CursorUtility.GetMousePosition();
             dest.y = 0;
 
@@ -59,7 +72,6 @@ public class HeroCharacterController : MonoBehaviour
 
                 isArrived = false;
                 animController.isMoving = true;
-                
             }
         }
 
@@ -93,22 +105,28 @@ public class HeroCharacterController : MonoBehaviour
                 Quaternion.Slerp(rb.transform.rotation, targetAngle, Time.deltaTime * rotationParameter);
         }
 
-        if (isMoving)
-        {
-            if (addForce)
-            {
-                rb.AddForce(forwardVector * speed * Time.deltaTime * addForceParameter);
-            }
-            else
-            {
-                rb.velocity = forwardVector * speed * velocityParameter; 
-            }
-        }
-
         if (debugger)
         {
-            destinationSphere.transform.position = destination;
+            destinationSphere.transform.position = destination + Vector3.up * debugOffset;
         }
+    }
+
+    //@todo: pooling system
+    IEnumerator Spawn()
+    {
+        yield return null;
+        yield return null;
+        
+        var decal = Instantiate(destDecalprefab, transform);
+        decal.transform.position = destination + Vector3.up * debugOffset;
+        decal.transform.rotation = Quaternion.identity;
+        decal.transform.localScale = Vector3.one * decalInitialScale;
+
+        var tween = decal.transform.DOScale(0.0f, decalDuration);
+        tween.onComplete += () =>
+        {
+            Destroy(decal.gameObject);
+        };
     }
 
     void FixedUpdate()
@@ -125,36 +143,8 @@ public class HeroCharacterController : MonoBehaviour
         }
     }
 
-    public void Move()
-    {
-        animController.isMoving = true;
-        isMoving = true;
-    }
-
-    public void Idle()
-    {
-        animController.isMoving = false;
-        isMoving = false;
-    }
-
-    bool IsArrived()
-    {
-        var dest = destination;
-        var cur = rb.position;
-        
-        dest.y = 0;
-        cur.y = 0;
-
-        var result = Vector3.SqrMagnitude(dest - cur);
-        
-        Debug.Log(result);
-        
-        return result < threshold;
-    }
-
     Vector3 CurrentPosition()
     {
         return new Vector3(rb.position.x, 0, rb.position.z);
     }
-    
 }

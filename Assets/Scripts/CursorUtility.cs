@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CursorUtility : MonoBehaviour
 {
@@ -25,26 +24,23 @@ public class CursorUtility : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetMouseButton(0))
+        if (Camera.main != null)
         {
-            if (Camera.main != null)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layer))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                hitPoint = hit.point;
+                hitCollider = hit.collider;
 
-                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, layer))
+                if (debugger)
                 {
-                    hitPoint = hit.point;
-                    hitCollider = hit.collider;
-
-                    if (debugger)
-                    {
-                        debugSphere.transform.position = hit.point;
-                    }
+                    debugSphere.transform.position = hit.point;
                 }
-                else
-                {
-                    hitCollider = null;
-                }
+            }
+            else
+            {
+                hitCollider = null;
             }
         }
 
