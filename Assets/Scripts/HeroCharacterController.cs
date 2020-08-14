@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HeroCharacterController : MonoBehaviour
 {
@@ -11,19 +10,21 @@ public class HeroCharacterController : MonoBehaviour
     public float addForceParameter = 1.0f;
     public float velocityParameter = 1.0f;
     public float rotationParameter = 10.0f;
-    bool isMoving;
+    
     public bool addForce;
 
     public float holdRadius = 0.2f;
-    Vector3 destination;
     public float threshold = 1f;
-    bool isArrived = true;
 
     public bool debugger;
     public GameObject destinationSphere;
-
-    bool mouseDown = false;
     public float stopParameter = 0.1f;
+    
+    bool isArrived = true;
+    bool isMoving;
+    bool mouseDown = false;
+    
+    Vector3 destination;
 
     public KeyCode stopKey = KeyCode.S;
     // Update is called once per frame
@@ -62,8 +63,10 @@ public class HeroCharacterController : MonoBehaviour
             }
         }
 
+        var gap = destination - CurrentPosition();
+
         // 도착 했나?
-        var sqrt = Vector3.SqrMagnitude(CurrentPosition() - destination);
+        var sqrt = Vector3.SqrMagnitude(gap);
         
         // Vector3 dest2 = CursorUtility.GetMousePosition();
         // if(Vector3.Distance(CurrentPosition(), dest2) > holdRadius)
@@ -76,16 +79,20 @@ public class HeroCharacterController : MonoBehaviour
         // 도착 안 했다
         if (!isArrived)
         {
-            var direction = destination - CurrentPosition();
+            var direction= gap;
             direction.Normalize();
 
             rb.velocity = direction * speed * velocityParameter;
         }
 
         // 캐릭터 로테이션
-        Quaternion targetAngle = Quaternion.LookRotation(destination - CurrentPosition());
-        rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, targetAngle, Time.deltaTime * rotationParameter);
-        
+        if (gap != Vector3.zero)
+        {
+            Quaternion targetAngle = Quaternion.LookRotation(gap);
+            rb.transform.rotation =
+                Quaternion.Slerp(rb.transform.rotation, targetAngle, Time.deltaTime * rotationParameter);
+        }
+
         if (isMoving)
         {
             if (addForce)
