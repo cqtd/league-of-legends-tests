@@ -26,6 +26,8 @@ public class HeroCharacterController : MonoBehaviour
     public GameObject destDecalprefab;
     public float decalInitialScale = 0.08f;
     public float decalDuration = 0.2f;
+    public GameObject cursorEffectPrefab;
+    
     
     [Header("Debug")]
     public bool debugger;
@@ -115,6 +117,11 @@ public class HeroCharacterController : MonoBehaviour
     IEnumerator Spawn()
     {
         yield return null;
+
+        var effect = Instantiate(cursorEffectPrefab, transform);
+        effect.transform.position = destination + Vector3.up * debugOffset;
+        effect.transform.rotation = Quaternion.identity;
+        
         yield return null;
         
         var decal = Instantiate(destDecalprefab, transform);

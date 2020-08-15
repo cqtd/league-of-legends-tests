@@ -709,6 +709,7 @@ MonoBehaviour:
   destDecalprefab: {fileID: 2752465159213206125, guid: e3586dc8cca3b8a4aa1a6fa739bccfe9, type: 3}
   decalInitialScale: 0.08
   decalDuration: 0.3
+  cursorEffectPrefab: {fileID: 5240645956734993035, guid: 39658acfcaeb9614bb7ae68a7a6cd9c7, type: 3}
   debugger: 0
   destinationSphere: {fileID: 2099977913}
   debugOffset: 0.01
