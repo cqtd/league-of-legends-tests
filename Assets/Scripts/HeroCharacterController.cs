@@ -117,23 +117,12 @@ public class HeroCharacterController : MonoBehaviour
     IEnumerator Spawn()
     {
         yield return null;
-
-        var effect = Instantiate(cursorEffectPrefab, transform);
-        effect.transform.position = destination + Vector3.up * debugOffset;
-        effect.transform.rotation = Quaternion.identity;
         
-        // yield return null;
-        //
-        // var decal = Instantiate(destDecalprefab, transform);
-        // decal.transform.position = destination + Vector3.up * debugOffset;
-        // decal.transform.rotation = Quaternion.identity;
-        // decal.transform.localScale = Vector3.one * decalInitialScale;
-        //
-        // var tween = decal.transform.DOScale(0.0f, decalDuration);
-        // tween.onComplete += () =>
-        // {
-        //     Destroy(decal.gameObject);
-        // };
+        CursorEffect.Spawn(destination + Vector3.up * debugOffset , transform);
+
+        // var effect = Instantiate(cursorEffectPrefab, transform);
+        // effect.transform.position = destination + Vector3.up * debugOffset;
+        // effect.transform.rotation = Quaternion.identity;
     }
 
     void FixedUpdate()

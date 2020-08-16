@@ -13,50 +13,76 @@ public class CursorEffect : MonoBehaviour
     public float ringDuration = 0.4f;
     public float initialScale = 0.08f;
     
-    Material instance;
+    Material instancedMaterial;
     Tweener arrowTweener;
     Tweener ringTweener;
     
     static readonly int shift = Shader.PropertyToID("_Shift");
 
-    static CursorEffect last;
+    static CursorEffect _instance;
 
     void Awake()
     {
-        if (last != null)
-        {
-            Destroy(last.gameObject);
-        }
-        
-        last = this;
-        
-        instance = new Material(material);
+        instancedMaterial = new Material(material);
         foreach (MeshRenderer meshRenderer in renderers)
         {
-            meshRenderer.sharedMaterial = instance;
+            meshRenderer.sharedMaterial = instancedMaterial;
         }
 
-        instance.SetFloat(shift, -1.0f);
-        
-        ring.transform.localScale = Vector3.one * initialScale;
-    }
-
-    void Start()
-    {
-        arrowTweener = instance.DOFloat(2, shift, duration);
-        arrowTweener.onComplete += OnArrowComplete;
-        
-        ringTweener = ring.transform.DOScale(0.0f, ringDuration);
-        ringTweener.onComplete += OnRingComplete;
+        instancedMaterial.SetFloat(shift, -1.0f);
     }
 
     void OnArrowComplete()
     {
-        Destroy(this.gameObject);
+        
     }
 
     void OnRingComplete()
     {
-        ring.gameObject.SetActive(false);
+        
+    }
+
+    public static void Spawn(Vector3 pos, Transform parent)
+    {
+        if (_instance != null)
+        {
+            _instance.StopAnimation();
+        }
+        else
+        {
+            _instance = Instantiate(Resources.Load<CursorEffect>("CursorEffect"), parent);
+            _instance.transform.position = pos;
+            _instance.transform.rotation = Quaternion.identity;
+            
+            _instance.SetupAnimation();
+        }
+        
+        _instance.StartAnimation(pos);
+    }
+
+    void SetupAnimation()
+    {
+        arrowTweener = instancedMaterial.DOFloat(2, shift, duration);
+        arrowTweener.onComplete += OnArrowComplete;
+        arrowTweener.SetAutoKill(false);
+        
+        ringTweener = ring.transform.DOScale(0.0f, ringDuration);
+        ringTweener.onComplete += OnRingComplete;
+        ringTweener.SetAutoKill(false);
+    }
+
+    void StartAnimation(Vector3 pos)
+    {
+        _instance.transform.position = pos;
+        ring.transform.localScale = Vector3.one * initialScale;
+
+        arrowTweener.Restart(false);
+        ringTweener.Restart(false);
+    }
+
+    void StopAnimation()
+    {
+        arrowTweener.Pause();
+        ringTweener.Pause();
     }
 }
