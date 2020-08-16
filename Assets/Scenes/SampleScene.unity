@@ -852,7 +852,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1536
-  debugger: 1
+  debugger: 0
   debugSphere: {fileID: 633179101}
 --- !u!1 &919941035
 GameObject:

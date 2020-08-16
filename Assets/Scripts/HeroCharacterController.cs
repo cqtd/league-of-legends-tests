@@ -122,18 +122,18 @@ public class HeroCharacterController : MonoBehaviour
         effect.transform.position = destination + Vector3.up * debugOffset;
         effect.transform.rotation = Quaternion.identity;
         
-        yield return null;
-        
-        var decal = Instantiate(destDecalprefab, transform);
-        decal.transform.position = destination + Vector3.up * debugOffset;
-        decal.transform.rotation = Quaternion.identity;
-        decal.transform.localScale = Vector3.one * decalInitialScale;
-
-        var tween = decal.transform.DOScale(0.0f, decalDuration);
-        tween.onComplete += () =>
-        {
-            Destroy(decal.gameObject);
-        };
+        // yield return null;
+        //
+        // var decal = Instantiate(destDecalprefab, transform);
+        // decal.transform.position = destination + Vector3.up * debugOffset;
+        // decal.transform.rotation = Quaternion.identity;
+        // decal.transform.localScale = Vector3.one * decalInitialScale;
+        //
+        // var tween = decal.transform.DOScale(0.0f, decalDuration);
+        // tween.onComplete += () =>
+        // {
+        //     Destroy(decal.gameObject);
+        // };
     }
 
     void FixedUpdate()
