@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CameraController : MonoBehaviour
     
     public bool fixCameraToTarget = true;
     public KeyCode fixCameraKey = KeyCode.Y;
+    public UnityEvent onFixCameraToggle;
 
     public Vector3 threshold;
     public float multiplier;
@@ -87,6 +89,7 @@ public class CameraController : MonoBehaviour
     void OnToggleFixCamera()
     {
         fixCameraToTarget = !fixCameraToTarget;
+        onFixCameraToggle.Invoke();
     }
 
     Vector3 GetMouseInput()

@@ -10,6 +10,7 @@
 /[Ll]ogs/
 /.idea/
 /[Mm]emoryCaptures/
+/[Ll]eague of Legends/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

@@ -14,6 +14,7 @@ namespace UI
 		public TextMeshProUGUI cameraIndex;
 		public Button cameraChangeButton;
 		
+		public Toggle fixCamera;
 		public Toggle debugDestination;
 		public Toggle debugCursorPosition;
 
@@ -37,6 +38,7 @@ namespace UI
 			cameraIndexFormat = cameraIndex.text;
 			cameraIndex.SetText(string.Format(cameraIndexFormat, cameraController.initialCamera + 1));
 
+			fixCamera.isOn = cameraController.fixCameraToTarget;
 			debugDestination.isOn = characterController.debugger;
 			debugCursorPosition.isOn = cursorUtility.debugger;
 		}
@@ -49,15 +51,25 @@ namespace UI
 				cameraIndex.SetText(string.Format(cameraIndexFormat, cameraController.CurrentCameraIndex + 1));
 			}).AddTo(cameraController);
 
+			fixCamera.OnValueChangedAsObservable().Subscribe(e =>
+			{
+				cameraController.fixCameraToTarget = e;
+			}).AddTo(cameraController);
+
+			cameraController.onFixCameraToggle.AddListener(() =>
+			{
+				fixCamera.SetIsOnWithoutNotify(cameraController.fixCameraToTarget);
+			});
+
 			debugDestination.OnValueChangedAsObservable().Subscribe(e =>
 			{
 				characterController.debugger = e;
-			});
-			
+			}).AddTo(characterController);
+
 			debugCursorPosition.OnValueChangedAsObservable().Subscribe(e =>
 			{
 				cursorUtility.debugger = e;
-			});
+			}).AddTo(cursorUtility);
 		}
 	}
 }
