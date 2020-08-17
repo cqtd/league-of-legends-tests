@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public HeroInput input;
+    
     public Camera[] cameras;
     public int initialCamera = 0;
     public Transform initialTarget;
@@ -10,7 +12,18 @@ public class CameraController : MonoBehaviour
     public bool fixCameraToTarget = true;
     public KeyCode fixCameraKey = KeyCode.Y;
 
+    public Vector3 threshold;
+    public float multiplier;
+
     int current = 0;
+
+    public int CurrentCameraIndex
+    {
+        get
+        {
+            return current;
+        }
+    }
 
     Dictionary<Camera, Vector3> cameraOffset;
     Transform target;
@@ -23,6 +36,8 @@ public class CameraController : MonoBehaviour
         
         SetTarget(initialTarget);
         SetCamera(initialCamera);
+        
+        input.AddBindings(fixCameraKey, ETriggerType.DOWN, OnToggleFixCamera);
     }
 
     public void NextCamera()
@@ -55,11 +70,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(fixCameraKey))
-        {
-            fixCameraToTarget = !fixCameraToTarget;
-        }
-
         Vector3 offset;
         if (fixCameraToTarget)
         {
@@ -68,9 +78,44 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            offset = lastOffset;
+            offset = lastOffset ;
         }
 
         cameras[current].transform.position = cameraOffset[cameras[current]] + offset;
+    }
+
+    void OnToggleFixCamera()
+    {
+        fixCameraToTarget = !fixCameraToTarget;
+    }
+
+    Vector3 GetMouseInput()
+    {
+        var mouse = Input.mousePosition;
+    
+        Vector3 direction = new Vector3();
+        if (mouse.x < threshold.x)
+        {
+            // Move Left
+            direction += Vector3.left;
+        }
+        else if (mouse.x > Screen.width - threshold.x)
+        {
+            // Move Right
+            direction += Vector3.right;
+        }
+    
+        if (mouse.y < threshold.y)
+        {
+            // Move Down
+            direction += Vector3.back;
+        }
+        else if (mouse.y > Screen.height - threshold.y)
+        {
+            // Move Up
+            direction += Vector3.forward;
+        }
+    
+        return direction;
     }
 }

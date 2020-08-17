@@ -20,6 +20,8 @@ public class CursorUtility : MonoBehaviour
         }
 
         _instance = this;
+
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Update()

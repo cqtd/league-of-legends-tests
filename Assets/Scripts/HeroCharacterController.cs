@@ -1,11 +1,15 @@
-﻿using System.Collections;
-using DG.Tweening;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class HeroCharacterController : MonoBehaviour
 {
     [Header("Component")]
     public HeroAnimController animController;
+    public HeroSpellbook spellbook;
+    public HeroInput input;
+    
+    [Space]
     public Rigidbody rb;
     
     [Header("Bindings")]
@@ -17,17 +21,13 @@ public class HeroCharacterController : MonoBehaviour
     [Range(5, 20)] public float rotationParameter = 10.0f;
     [Range(-2, 2)] public float stopParameter = 1f;
 
-    [Space]
-    public float holdRadius = 0.2f;
-    public float threshold = 1f;
+    [Space] 
+    [Range(0.01f, 0.5f)] public float holdRadius = 0.2f;
+    public float threshold = .5f;
 
-    [Header("Particle")]
-    public bool spawnDestination;
-    public GameObject destDecalprefab;
-    public float decalInitialScale = 0.08f;
-    public float decalDuration = 0.2f;
-    public GameObject cursorEffectPrefab;
-    
+    [Header("Particle")] 
+    public bool spawnDestination = true;
+    public float zFightOffset = 0.01f;
     
     [Header("Debug")]
     public bool debugger;
@@ -35,18 +35,17 @@ public class HeroCharacterController : MonoBehaviour
     public float debugOffset = 0.01f;
     
     bool isArrived = true;
-    bool isMoving;
-    bool mouseDown = false;
+    bool mouseDown;
     
     Vector3 destination;
-    
+
+    void Awake()
+    {
+        input.AddBindings(stopKey, ETriggerType.DOWN, OnStop);
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(stopKey))
-        {
-            destination = (destination - CurrentPosition()).normalized * stopParameter + CurrentPosition();
-        }
-        
         if (Input.GetMouseButtonDown(1))
         {
             mouseDown = true;
@@ -82,8 +81,6 @@ public class HeroCharacterController : MonoBehaviour
         // 도착 했나?
         var sqrt = Vector3.SqrMagnitude(gap);
         
-        // Vector3 dest2 = CursorUtility.GetMousePosition();
-        // if(Vector3.Distance(CurrentPosition(), dest2) > holdRadius)
         if (sqrt < threshold)
         {
             isArrived = true;
@@ -113,16 +110,10 @@ public class HeroCharacterController : MonoBehaviour
         }
     }
 
-    //@todo: pooling system
     IEnumerator Spawn()
     {
         yield return null;
-        
-        CursorEffect.Spawn(destination + Vector3.up * debugOffset , transform);
-
-        // var effect = Instantiate(cursorEffectPrefab, transform);
-        // effect.transform.position = destination + Vector3.up * debugOffset;
-        // effect.transform.rotation = Quaternion.identity;
+        CursorEffect.Spawn(destination + Vector3.up * zFightOffset , transform);
     }
 
     void FixedUpdate()
@@ -142,5 +133,10 @@ public class HeroCharacterController : MonoBehaviour
     Vector3 CurrentPosition()
     {
         return new Vector3(rb.position.x, 0, rb.position.z);
+    }
+
+    void OnStop()
+    {
+        destination = (destination - CurrentPosition()).normalized * stopParameter + CurrentPosition();
     }
 }
