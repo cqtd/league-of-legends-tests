@@ -7,7 +7,6 @@ public class HeroCharacterController : MonoBehaviour
     [Header("Component")]
     public HeroAnimController animController;
     public HeroSpellbook spellbook;
-    public HeroInput input;
     
     [Space]
     public Rigidbody rb;
@@ -40,42 +39,15 @@ public class HeroCharacterController : MonoBehaviour
     Vector3 destination;
 
     void Awake()
-    {
-        input.AddBindings(stopKey, ETriggerType.DOWN, OnStop);
+    { 
+        InputHandler.AddBindings(stopKey, ETriggerType.DOWN, OnStop);
+        
+        InputHandler.AddBindings(EMouseButton.Right, ETriggerType.DOWN, OnRightMouseDown);
+        InputHandler.AddBindings(EMouseButton.Right, ETriggerType.STAY, OnRightMouseStay);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            mouseDown = true;
-            
-            if (spawnDestination)
-            {
-                StartCoroutine(Spawn());
-            }
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            mouseDown = false;
-        }
-        
-        if (mouseDown)
-        {
-            Vector3 dest = CursorUtility.GetMousePosition();
-            dest.y = 0;
-
-            // 새로 정해진 목적지가 유효한 경우
-            if (Vector3.Distance(CurrentPosition(), dest) > holdRadius)
-            {
-                destination = dest;
-
-                isArrived = false;
-                animController.isMoving = true;
-            }
-        }
-
         var gap = destination - CurrentPosition();
 
         // 도착 했나?
@@ -107,6 +79,34 @@ public class HeroCharacterController : MonoBehaviour
         if (debugger)
         {
             destinationSphere.transform.position = destination + Vector3.up * debugOffset;
+        }
+    }
+
+    void OnRightMouseDown()
+    {
+        if (spawnDestination)
+        {
+            StartCoroutine(Spawn());
+        }
+    }
+
+    void OnRightMouseUp()
+    {
+        
+    }
+
+    void OnRightMouseStay()
+    {
+        Vector3 dest = CursorUtility.GetMousePosition();
+        dest.y = 0;
+
+        // 새로 정해진 목적지가 유효한 경우
+        if (Vector3.Distance(CurrentPosition(), dest) > holdRadius)
+        {
+            destination = dest;
+
+            isArrived = false;
+            animController.isMoving = true;
         }
     }
 

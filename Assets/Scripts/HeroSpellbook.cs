@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class HeroSpellbook : MonoBehaviour
+﻿public class HeroSpellbook : SpellBookBase
 {
     
 }

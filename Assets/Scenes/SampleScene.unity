@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animController: {fileID: 1214450176}
   spellbook: {fileID: 0}
-  input: {fileID: 613994144}
+  inputHandler: {fileID: 613994144}
   rb: {fileID: 17476887}
   stopKey: 115
   speed: 350
@@ -1953,7 +1953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fa62bc97b0ed941a88466fda69a547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 613994144}
+  inputHandler: {fileID: 613994144}
   cameras:
   - {fileID: 963194227}
   - {fileID: 1796653241}
@@ -1962,6 +1962,9 @@ MonoBehaviour:
   initialTarget: {fileID: 543450651944159091}
   fixCameraToTarget: 1
   fixCameraKey: 121
+  onFixCameraToggle:
+    m_PersistentCalls:
+      m_Calls: []
   threshold: {x: 5, y: 5, z: 5}
   multiplier: 10
 --- !u!1 &963194225

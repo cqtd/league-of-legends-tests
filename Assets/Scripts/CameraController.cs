@@ -4,8 +4,6 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
-    public HeroInput input;
-    
     public Camera[] cameras;
     public int initialCamera = 0;
     public Transform initialTarget;
@@ -39,7 +37,7 @@ public class CameraController : MonoBehaviour
         SetTarget(initialTarget);
         SetCamera(initialCamera);
         
-        input.AddBindings(fixCameraKey, ETriggerType.DOWN, OnToggleFixCamera);
+        InputHandler.AddBindings(fixCameraKey, ETriggerType.DOWN, OnToggleFixCamera);
     }
 
     public void NextCamera()
