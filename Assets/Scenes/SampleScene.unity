@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 613994145}
   - component: {fileID: 613994144}
   m_Layer: 0
-  m_Name: Input
+  m_Name: InputHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1293,7 +1293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animController: {fileID: 1214450176}
   spellbook: {fileID: 0}
-  inputHandler: {fileID: 613994144}
   rb: {fileID: 17476887}
   stopKey: 115
   speed: 350
@@ -1953,7 +1952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fa62bc97b0ed941a88466fda69a547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputHandler: {fileID: 613994144}
   cameras:
   - {fileID: 963194227}
   - {fileID: 1796653241}
@@ -3098,6 +3096,50 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!1 &1995769006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1995769008}
+  - component: {fileID: 1995769007}
+  m_Layer: 0
+  m_Name: ObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1995769007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995769006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ec36837730416bb0a40a06ea13c438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localPlayer: {fileID: 919132147689086410}
+--- !u!4 &1995769008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995769006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2020617186
 GameObject:
   m_ObjectHideFlags: 0
@@ -3828,6 +3870,7 @@ GameObject:
   - component: {fileID: 17476887}
   - component: {fileID: 17476886}
   - component: {fileID: 17476884}
+  - component: {fileID: 919132147689086410}
   m_Layer: 9
   m_Name: Jinx
   m_TagString: Player
@@ -3835,6 +3878,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132147689086410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147689086409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8088255391b942488e5d170b1d157631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &951011103942552706
 GameObject:
   m_ObjectHideFlags: 0

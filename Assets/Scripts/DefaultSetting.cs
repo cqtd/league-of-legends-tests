@@ -16,7 +16,18 @@ public class DefaultSetting : MonoBehaviour
     {
         if (Input.GetKeyDown(escapeKey))
         {
+#if UNITY_EDITOR
+	            
+#else
             Application.Quit(0);
+#endif
+        }
+
+        if (Input.GetKey(escapeKey) && Input.GetKey(KeyCode.LeftShift))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
         }
     }
 }

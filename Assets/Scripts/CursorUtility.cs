@@ -20,6 +20,7 @@ public class CursorUtility : MonoBehaviour
         }
 
         _instance = this;
+        DontDestroyOnLoad(this.gameObject);
 
         Cursor.lockState = CursorLockMode.Confined;
     }

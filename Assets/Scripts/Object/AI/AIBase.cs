@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class AIBase : AttackableUnit
 {
-	public virtual void IssueOrder(GameObjectOrder order, Vector3 position, AttackableUnit target, bool isAttackMove, bool isMinion)
+	public void IssueOrder(GameObjectOrder order, Vector3 position, AttackableUnit target, bool isAttackMove, bool isMinion)
 	{
 		switch (order)
 		{
