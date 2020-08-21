@@ -82,4 +82,14 @@ public class CursorUtility : MonoBehaviour
     {
         return _instance.hitCollider;
     }
+
+    public static void SetDebugger(bool isOn)
+    {
+        _instance.debugger = isOn;
+    }
+
+    public static bool GetDebugger()
+    {
+        return _instance.debugger;
+    }
 }

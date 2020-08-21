@@ -7,9 +7,6 @@ namespace UI
 {
 	public class UIManager : MonoBehaviour
 	{
-		public CameraController cameraController;
-		public CursorUtility cursorUtility;
-		public HeroCharacterController characterController;
 
 		public TextMeshProUGUI cameraIndex;
 		public Button cameraChangeButton;
@@ -19,15 +16,11 @@ namespace UI
 		public Toggle debugCursorPosition;
 
 		string cameraIndexFormat;
+		
+		HeroController controller;
+		CameraController cameraController;
 
-		void Reset()
-		{
-			cameraController = FindObjectOfType<CameraController>();
-			cursorUtility = FindObjectOfType<CursorUtility>();
-			characterController = FindObjectOfType<HeroCharacterController>();
-		}
-
-		void Awake()
+		void Start()
 		{
 			Init();
 			Bind();
@@ -35,12 +28,15 @@ namespace UI
 
 		void Init()
 		{
+			controller = ObjectManager.GetPlayer().GetController();
+			cameraController = CameraController.Instance;
+			
 			cameraIndexFormat = cameraIndex.text;
 			cameraIndex.SetText(string.Format(cameraIndexFormat, cameraController.initialCamera + 1));
 
 			fixCamera.isOn = cameraController.fixCameraToTarget;
-			debugDestination.isOn = characterController.debugger;
-			debugCursorPosition.isOn = cursorUtility.debugger;
+			debugDestination.isOn = controller.debugger;
+			debugCursorPosition.isOn = CursorUtility.GetDebugger();
 		}
 
 		void Bind()
@@ -63,13 +59,10 @@ namespace UI
 
 			debugDestination.OnValueChangedAsObservable().Subscribe(e =>
 			{
-				characterController.debugger = e;
-			}).AddTo(characterController);
+				controller.debugger = e;
+			}).AddTo(controller);
 
-			debugCursorPosition.OnValueChangedAsObservable().Subscribe(e =>
-			{
-				cursorUtility.debugger = e;
-			}).AddTo(cursorUtility);
+			debugCursorPosition.OnValueChangedAsObservable().Subscribe(CursorUtility.SetDebugger);
 		}
 	}
 }

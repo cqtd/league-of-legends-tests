@@ -532,6 +532,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &306557831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306557833}
+  - component: {fileID: 306557832}
+  m_Layer: 0
+  m_Name: Posses Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &306557832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306557831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c64f0050524d58929eb5e6b2fe4a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &306557833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306557831}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319256388
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,9 +703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb346ea11ce4db89c3f373c9f7e49ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 949703391}
-  cursorUtility: {fileID: 749449082}
-  characterController: {fileID: 685944731}
   cameraIndex: {fileID: 531344359}
   cameraChangeButton: {fileID: 466330318}
   fixCamera: {fileID: 319256390}
@@ -1256,7 +1296,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 685944730}
-  - component: {fileID: 685944731}
   m_Layer: 0
   m_Name: CharacterController
   m_TagString: Untagged
@@ -1274,38 +1313,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2099977914}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &685944731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685944729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90613e05751f79043abb806b62f70d7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animController: {fileID: 1214450176}
-  spellbook: {fileID: 0}
-  rb: {fileID: 17476887}
-  stopKey: 115
-  speed: 350
-  velocityParameter: 0.008
-  rotationParameter: 10
-  stopParameter: 1
-  holdRadius: 0.2
-  threshold: 0.5
-  spawnDestination: 1
-  zFightOffset: 0.01
-  debugger: 0
-  destinationSphere: {fileID: 2099977913}
-  debugOffset: 0.01
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,8 +3322,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
-  m_Father: {fileID: 685944730}
-  m_RootOrder: 0
+  m_Father: {fileID: 543450651944159091}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2099977915
 MeshRenderer:
@@ -3658,6 +3669,7 @@ Transform:
   - {fileID: 3078023918788150185}
   - {fileID: 1373478251292130122}
   - {fileID: 7024483453973493321}
+  - {fileID: 2099977914}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3871,6 +3883,7 @@ GameObject:
   - component: {fileID: 17476886}
   - component: {fileID: 17476884}
   - component: {fileID: 919132147689086410}
+  - component: {fileID: 919132147689086411}
   m_Layer: 9
   m_Name: Jinx
   m_TagString: Player
@@ -3890,6 +3903,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8088255391b942488e5d170b1d157631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 919132147689086411}
+  attackRange: 0.55
+  boundingRadius: 0.25
+--- !u!114 &919132147689086411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147689086409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90613e05751f79043abb806b62f70d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animController: {fileID: 1214450176}
+  spellbook: {fileID: 0}
+  rb: {fileID: 17476887}
+  stopKey: 115
+  speed: 350
+  velocityParameter: 0.008
+  rotationParameter: 10
+  stopParameter: 1
+  holdRadius: 0.2
+  threshold: 0.5
+  spawnDestination: 1
+  zFightOffset: 0.01
+  debugger: 0
+  destinationSphere: {fileID: 2099977913}
+  debugOffset: 0.01
 --- !u!1 &951011103942552706
 GameObject:
   m_ObjectHideFlags: 0

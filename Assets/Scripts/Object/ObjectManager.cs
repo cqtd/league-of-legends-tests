@@ -14,7 +14,7 @@ public class ObjectManager : MonoBehaviour
 		DontDestroyOnLoad(this.gameObject);
 	}
 
-	[SerializeField] AIHeroClient localPlayer;
+	[SerializeField] AIHeroClient localPlayer = default;
 
 	public static AIHeroClient GetPlayer()
 	{

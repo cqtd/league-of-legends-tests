@@ -1,9 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
+    static CameraController _instance;
+    public static CameraController Instance {
+        get
+        {
+            return _instance;
+        }
+    }
+    
     public Camera[] cameras;
     public int initialCamera = 0;
     public Transform initialTarget;
@@ -32,6 +41,7 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
+        _instance = this;
         cameraOffset = new Dictionary<Camera, Vector3>();
         
         SetTarget(initialTarget);
