@@ -14,7 +14,9 @@ namespace UI
 		public Toggle fixCamera;
 		public Toggle debugDestination;
 		public Toggle debugCursorPosition;
-		
+
+		public TMP_InputField input;
+		public Button openButton;
 		public Button repo1Button;
 		public Button repo2Button;
 
@@ -70,12 +72,17 @@ namespace UI
 			
 			repo1Button.onClick.AddListener(() =>
 			{
-				Native.WebGL.Open("\"https://github.com/cqtd/league-of-legends-tests\"");
+				Native.Global.OpenURL("https://github.com/cqtd/league-of-legends-tests");
 			});
 			
 			repo2Button.onClick.AddListener(() =>
 			{
-				Native.WebGL.Open("\"https://github.com/cqtd/league-of-legends-clone\"");
+				Native.Global.OpenURL("https://github.com/cqtd/league-of-legends-clone");
+			});
+			
+			openButton.onClick.AddListener(() =>
+			{
+				Native.Global.OpenURL(input.text);
 			});
 		}
 	}

@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Native
 {
+	public class Window
+	{
+		
+	}
 	[DllImport("user32.dll", EntryPoint = "SetWindowText")]
 	public static extern bool SetWindowText(System.IntPtr hwnd, System.String lpString);
 	
@@ -28,6 +32,21 @@ public class Native
 		public static void Open(string url)
 		{
 			OpenWindow(url);
+		}
+	}
+
+	public class Global
+	{
+		public static void OpenURL(string url)
+		{
+#if UNITY_STANDALONE_WIN
+			Application.OpenURL(url);
+
+#elif UNITY_WEBGL
+			WebGL.Open(url);	
+#else
+
+#endif
 		}
 	}
 }
