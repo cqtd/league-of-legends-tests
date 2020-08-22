@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+//https://docs.unity3d.com/kr/530/Manual/PlatformDependentCompilation.html
 
 public class DefaultSetting : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DefaultSetting : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = targetFrameRate;
+        
+        Native.SetWindowText("[Public]");
     }
 
     // Update is called once per frame
@@ -18,7 +21,7 @@ public class DefaultSetting : MonoBehaviour
         {
 #if UNITY_EDITOR
 	            
-#elif UNITY_STANDALONE
+#elif UNITY_STANDALONE_WIN
             Application.Quit(0);
 #endif
         }

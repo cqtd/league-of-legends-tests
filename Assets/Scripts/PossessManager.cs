@@ -8,6 +8,7 @@ namespace GameMode
 		void Awake()
 		{
 			AIHeroClient localPlayer = ObjectManager.GetPlayer();
+			localPlayer.Possess();
 		}
 	}
 }

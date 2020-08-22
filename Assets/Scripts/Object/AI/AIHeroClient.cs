@@ -31,7 +31,7 @@ public class AIHeroClient : AIBase
 		return this.controller as HeroController;
 	}
 
-	bool CreateCircle(ref GameObject spawned, Color color)
+	void CreateCircle(ref GameObject spawned, Color color)
 	{
 		if (spawned == null)
 		{
@@ -40,11 +40,7 @@ public class AIHeroClient : AIBase
 			mat.SetColor("_Color", color);
 
 			spawned.GetComponent<Renderer>().sharedMaterial = mat;
-			
-			return false;
 		}
-
-		return true;
 	}
 
 	const float planeOffset = 0.01f;
@@ -83,7 +79,7 @@ public class AIHeroClient : AIBase
 	}
 
 	//@TODO :: IssueOrder로 Controller 로직 다 옮기기
-	void Start()
+	public void Possess()
 	{
 		InputHandler.AddBindings(KeyCode.Space, ETriggerType.DOWN, BeginDrawBoundingRadius);
 		InputHandler.AddBindings(KeyCode.Space, ETriggerType.UP, EndDrawBoundingRadius);
