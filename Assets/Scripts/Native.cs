@@ -3,26 +3,26 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class Native
+public static class Native
 {
-	public class Window
+	public static class Window
 	{
-		
-	}
-	[DllImport("user32.dll", EntryPoint = "SetWindowText")]
-	public static extern bool SetWindowText(System.IntPtr hwnd, System.String lpString);
+		[DllImport("user32.dll", EntryPoint = "SetWindowText")]
+		static extern bool SetWindowText(System.IntPtr hwnd, System.String lpString);
 	
-	[DllImport("user32.dll", EntryPoint = "FindWindow")]
-	public static extern System.IntPtr FindWindow(System.String className, System.String windowName);
+		[DllImport("user32.dll", EntryPoint = "FindWindow")]
+		static extern System.IntPtr FindWindow(System.String className, System.String windowName);
+		
 
-	[Conditional("UNITY_STANDALONE_WIN")]
-	public static void SetWindowText(string text)
-	{
-		IntPtr windowPtr = FindWindow(null, Application.productName);
-		SetWindowText(windowPtr, text);	
+		[Conditional("UNITY_STANDALONE_WIN")]
+		public static void SetWindowText(string text)
+		{
+			IntPtr windowPtr = FindWindow(null, Application.productName);
+			SetWindowText(windowPtr, text);	
+		}
 	}
 
-	public class WebGL
+	public static class WebGL
 	{
 		//https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html?_ga=2.242629824.379029621.1598020523-1939043715.1580177978
 		[DllImport("__Internal")]
@@ -35,11 +35,13 @@ public class Native
 		}
 	}
 
-	public class Global
+	public static class Global
 	{
 		public static void OpenURL(string url)
 		{
-#if UNITY_STANDALONE_WIN
+#if UNITY_EDITOR
+			Application.OpenURL(url);
+#elif UNITY_STANDALONE_WIN
 			Application.OpenURL(url);
 
 #elif UNITY_WEBGL

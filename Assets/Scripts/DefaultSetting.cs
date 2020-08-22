@@ -10,8 +10,8 @@ public class DefaultSetting : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = targetFrameRate;
-        
-        Native.SetWindowText("[Public]");
+
+        // Native.Window.SetWindowText(Application.productName + " [" + BuildInfo.version + "]");
     }
 
     // Update is called once per frame

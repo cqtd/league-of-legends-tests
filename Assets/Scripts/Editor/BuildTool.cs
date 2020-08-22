@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -122,9 +123,8 @@ namespace Editor
 			var storagePath = projectPath + "/win64/League of Legends";
 			var playerPath = storagePath + "/League of Legends.exe";
 			var buildStorage = new DirectoryInfo(storagePath);
-			
-			// if (!buildStorage.Exists)
-			// 	buildStorage.Create();
+
+			// CreateBuildInfo();
 
 			BuildPlayerOptions options = new BuildPlayerOptions
 			{
@@ -158,6 +158,16 @@ namespace Editor
 			
 			foreach (FileInfo file in source.GetFiles())
 				file.CopyTo(Path.Combine(target.FullName, file.Name), true);
+		}
+
+		[MenuItem("Build/Create Build Information")]
+		static void CreateBuildInfo()
+		{
+			var sb = new StringBuilder();
+			sb.AppendLine("public class BuildInfo {");
+			sb.AppendLine("public const string version = " + $"\"0x{PlayerSettings.Android.bundleVersionCode:X}\"; " + "}");
+			File.WriteAllText("Assets/BuildInfo.cs", sb.ToString());
+			AssetDatabase.Refresh();
 		}
 	}
 }
