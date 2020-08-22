@@ -11,9 +11,53 @@ namespace Editor
 	{
 		const string platform_webgl = "webgl";
 		const string platform_standalone_win64 = "win64";
+
+		static void Build(BuildTarget target)
+		{
+			if (!EditorUtility.DisplayDialog("WebGL", "빌드를 진행하시겠습니까?", "빌드", "취소"))
+				return;
+			
+			var projectPath = Application.dataPath.Replace("/Assets", "");
+			var buildPath = projectPath + "/Build";
+			
+			var date = DateTime.Now.ToString("yyyy-MM-dd");
+			var datePath = buildPath + "/" + platform_webgl + "/" + date;
+			
+			var backupDirectory = new DirectoryInfo(datePath + "/" + VersionManager.GetNextBuildVersion());
+			if (!backupDirectory.Exists)
+			{
+				backupDirectory.Create();
+			}
+
+			var storagePath = projectPath + "/League of Legends";
+			var buildStorage = new DirectoryInfo(storagePath);
+			
+			if (!buildStorage.Exists)
+				buildStorage.Create();
+
+			BuildPlayerOptions options = new BuildPlayerOptions
+			{
+				scenes = EditorBuildSettings.scenes.Select(e => e.path).ToArray(),
+				target = target,
+				locationPathName = buildStorage.FullName
+			};
+
+			BuildReport report = BuildPipeline.BuildPlayer(options);
+
+			if (report.summary.result == BuildResult.Succeeded)
+			{
+				// 빌드 데이터 백업
+				CopyFilesRecursively(buildStorage, backupDirectory);
+				
+				// 배포를 위한 경로
+				CopyFilesRecursively(buildStorage, new DirectoryInfo(projectPath + "/webgl"));
+				
+				Debug.Log($"<color=yellow>[{options.target}] Build Complete.</color>");
+			}
+		}
 		
 		[MenuItem("Build/Web GL", false, 500)]
-		static void Build_Folder()
+		static void Build_WebGL()
 		{
 			if (!EditorUtility.DisplayDialog("WebGL", "빌드를 진행하시겠습니까?", "빌드", "취소"))
 				return;

@@ -17,5 +17,16 @@ public class Native
 		IntPtr windowPtr = FindWindow(null, Application.productName);
 		SetWindowText(windowPtr, text);	
 	}
-	
+
+	public class WebGL
+	{
+		[DllImport("__Internal")]
+		private static extern void OpenWindow(string url);
+
+		[Conditional("UNITY_WEBGL")]
+		public static void Open(string url)
+		{
+			OpenWindow(url);
+		}
+	}
 }

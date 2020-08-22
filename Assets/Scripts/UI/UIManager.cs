@@ -14,6 +14,10 @@ namespace UI
 		public Toggle fixCamera;
 		public Toggle debugDestination;
 		public Toggle debugCursorPosition;
+		
+		public Button repo1Button;
+		public Button repo2Button;
+
 
 		string cameraIndexFormat;
 		
@@ -63,6 +67,16 @@ namespace UI
 			}).AddTo(controller);
 
 			debugCursorPosition.OnValueChangedAsObservable().Subscribe(CursorUtility.SetDebugger);
+			
+			repo1Button.onClick.AddListener(() =>
+			{
+				Native.WebGL.Open("\"https://github.com/cqtd/league-of-legends-tests\"");
+			});
+			
+			repo2Button.onClick.AddListener(() =>
+			{
+				Native.WebGL.Open("\"https://github.com/cqtd/league-of-legends-clone\"");
+			});
 		}
 	}
 }
