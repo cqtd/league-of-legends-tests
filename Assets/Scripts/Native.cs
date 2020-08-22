@@ -21,19 +21,22 @@ public static class Native
 			SetWindowText(windowPtr, text);	
 		}
 	}
-
+	
+	
+#if UNITY_WEBGL
 	public static class WebGL
 	{
 		//https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html?_ga=2.242629824.379029621.1598020523-1939043715.1580177978
 		[DllImport("__Internal")]
 		private static extern void OpenWindow(string url);
-
+	
 		[Conditional("UNITY_WEBGL")]
 		public static void Open(string url)
 		{
 			OpenWindow(url);
 		}
 	}
+#endif
 
 	public static class Global
 	{
