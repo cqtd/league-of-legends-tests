@@ -99,6 +99,7 @@ namespace Editor
 				CopyFilesRecursively(buildStorage, new DirectoryInfo(projectPath + "/webgl"));
 				
 				Debug.Log($"<color=yellow>[{options.target}] Build Complete.</color>");
+				VersionManager.IncreaseBuild();
 			}
 		}
 
@@ -144,6 +145,7 @@ namespace Editor
 				CopyFilesRecursively(buildStorage, new DirectoryInfo(projectPath + "/win64/bin"), "BackUpThisFolder_ButDontShipItWithYourGame");
 				
 				Debug.Log($"<color=yellow>[{options.target}] Build Complete.</color>");
+				VersionManager.IncreaseBuild();
 			}
 		}
 		

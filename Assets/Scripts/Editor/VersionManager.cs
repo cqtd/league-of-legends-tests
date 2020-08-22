@@ -59,7 +59,7 @@ public class VersionManager
         EditVersion(0, 0, 1, 0);
     }
 
-    static void IncreaseBuild()
+    public static void IncreaseBuild()
     {
         EditVersion(0, 0, 0, 1);
     }

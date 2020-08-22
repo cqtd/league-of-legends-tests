@@ -7,7 +7,6 @@ namespace UI
 {
 	public class UIManager : MonoBehaviour
 	{
-
 		public TextMeshProUGUI cameraIndex;
 		public Button cameraChangeButton;
 		
@@ -15,8 +14,6 @@ namespace UI
 		public Toggle debugDestination;
 		public Toggle debugCursorPosition;
 
-		public TMP_InputField input;
-		public Button openButton;
 		public Button repo1Button;
 		public Button repo2Button;
 
@@ -78,11 +75,6 @@ namespace UI
 			repo2Button.onClick.AddListener(() =>
 			{
 				Native.Global.OpenURL("https://github.com/cqtd/league-of-legends-clone");
-			});
-			
-			openButton.onClick.AddListener(() =>
-			{
-				Native.Global.OpenURL(input.text);
 			});
 		}
 	}

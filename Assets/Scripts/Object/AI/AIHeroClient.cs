@@ -33,51 +33,82 @@ public class AIHeroClient : AIBase
 		return this.controller as HeroController;
 	}
 
-	void CreateCircle(ref GameObject spawned, Color color)
-	{
-		if (spawned == null)
-		{
-			spawned = Instantiate(Resources.Load<GameObject>("DrawCircle"), transform);
-			Material mat = Instantiate(Resources.Load<Material>("MAT_DrawCircle"));
-			mat.SetColor("_Color", color);
+	// void CreateCircle(ref GameObject spawned, Color color, int intensity = 1)
+	// {
+	// 	if (spawned == null)
+	// 	{
+	// 		spawned = Instantiate(Resources.Load<GameObject>("DrawCircle"), transform);
+	// 		Material mat = Instantiate(Resources.Load<Material>("MAT_DrawCircle"));
+	// 		
+	// 		mat.SetColor("_Color", color * intensity);
+	//
+	// 		spawned.GetComponent<Renderer>().sharedMaterial = mat;
+	// 	}
+	// }
 
-			spawned.GetComponent<Renderer>().sharedMaterial = mat;
-		}
+	Circle attackRangeCircle;
+	Circle boundingRadiusCircle;
+
+	void Awake()
+	{
+		Circle.Builder builder;
+		
+		builder = new Circle.Builder($"{gameObject.name}_AttackRange");
+		attackRangeCircle = builder.SetColor(rangeColor)
+			.SetTarget(transform)
+			.SetIntensity(2)
+			.SetSize(BoundingRadius + AttackRange)
+			.Build();
+		
+		builder = new Circle.Builder($"{gameObject.name}_BoundingRadius");
+		boundingRadiusCircle = builder.SetColor(boundColor)
+			.SetTarget(transform)
+			.SetIntensity(1)
+			.SetSize(BoundingRadius)
+			.Build();
 	}
 
 	const float planeOffset = 0.01f;
-	public void BeginDrawAttackRange()
+	void BeginDrawAttackRange()
 	{
-		CreateCircle(ref attackRangeRenderer, rangeColor);
-
-		attackRangeRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
-		attackRangeRenderer.transform.localScale = (BoundingRadius + AttackRange) * Vector3.one;
+		attackRangeCircle.BeginDraw();
 		
-		attackRangeRenderer.SetActive(true);
+		// CreateCircle(ref attackRangeRenderer, rangeColor, 2);
+		//
+		// attackRangeRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
+		// attackRangeRenderer.transform.localScale = (BoundingRadius + AttackRange) * Vector3.one;
+		//
+		// attackRangeRenderer.SetActive(true);
 	}
 
-	public void EndDrawAttackRange()
+	void EndDrawAttackRange()
 	{
-		if (attackRangeRenderer == null) return;
+		attackRangeCircle.EndDraw();
 		
-		attackRangeRenderer.SetActive(false);
+		// if (attackRangeRenderer == null) return;
+		//
+		// attackRangeRenderer.SetActive(false);
 	}
 
-	public void BeginDrawBoundingRadius()
+	void BeginDrawBoundingRadius()
 	{
-		CreateCircle(ref boudingRadiusRenderer, boundColor);
-
-		boudingRadiusRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
-		boudingRadiusRenderer.transform.localScale = BoundingRadius * Vector3.one;
+		boundingRadiusCircle.BeginDraw();
 		
-		boudingRadiusRenderer.SetActive(true);
+		// CreateCircle(ref boudingRadiusRenderer, boundColor);
+		//
+		// boudingRadiusRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
+		// boudingRadiusRenderer.transform.localScale = BoundingRadius * Vector3.one;
+		//
+		// boudingRadiusRenderer.SetActive(true);
 	}
 
-	public void EndDrawBoundingRadius()
+	void EndDrawBoundingRadius()
 	{
-		if (boudingRadiusRenderer == null) return;
+		boundingRadiusCircle.EndDraw();
 		
-		boudingRadiusRenderer.SetActive(false);
+		// if (boudingRadiusRenderer == null) return;
+		//
+		// boudingRadiusRenderer.SetActive(false);
 	}
 
 	//@TODO :: IssueOrder로 Controller 로직 다 옮기기
@@ -85,6 +116,9 @@ public class AIHeroClient : AIBase
 	{
 		InputHandler.AddBindings(KeyCode.Space, ETriggerType.DOWN, BeginDrawBoundingRadius);
 		InputHandler.AddBindings(KeyCode.Space, ETriggerType.UP, EndDrawBoundingRadius);
+
+		InputHandler.AddBindings(KeyCode.Space, ETriggerType.DOWN, CameraController.ForceFocusHero);
+		InputHandler.AddBindings(KeyCode.Space, ETriggerType.UP, CameraController.UnforceFocusHero);
 		
 		InputHandler.AddBindings(KeyCode.A, ETriggerType.DOWN, BeginDrawAttackRange);
 		InputHandler.AddBindings(KeyCode.X, ETriggerType.DOWN, EndDrawAttackRange);
