@@ -5,8 +5,7 @@ using UnityEngine;
 public class HeroController : ControllerBase
 {
     [Header("Component")]
-    public HeroAnimController animController;
-    public HeroSpellbook spellbook;
+    public HeroAnimMachine heroAnimMachine;
     
     [Space]
     public Rigidbody rb;
@@ -56,7 +55,7 @@ public class HeroController : ControllerBase
         if (sqrt < threshold)
         {
             isArrived = true;
-            animController.isMoving = false;
+            heroAnimMachine.isMoving = false;
         }
 
         // 도착 안 했다
@@ -106,7 +105,7 @@ public class HeroController : ControllerBase
             destination = dest;
 
             isArrived = false;
-            animController.isMoving = true;
+            heroAnimMachine.isMoving = true;
         }
     }
 

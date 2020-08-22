@@ -2,6 +2,8 @@
 
 public class AIHeroClient : AIBase
 {
+	public HeroSpellbook spellbook;
+
 	public string ChampionName  { get; protected set; }
 	public int NeutralMinionKillCount  { get; protected set; }
 

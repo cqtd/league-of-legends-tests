@@ -11,7 +11,7 @@ public class DefaultSetting : MonoBehaviour
     {
         Application.targetFrameRate = targetFrameRate;
 
-        // Native.Window.SetWindowText(Application.productName + " [" + BuildInfo.version + "]");
+         Native.Window.SetWindowText(Application.productName + " [" + BuildInfo.version + "]");
     }
 
     // Update is called once per frame

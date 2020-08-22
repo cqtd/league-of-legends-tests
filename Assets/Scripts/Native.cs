@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 using UnityEngine;
 
 public static class Native
@@ -12,6 +13,9 @@ public static class Native
 	
 		[DllImport("user32.dll", EntryPoint = "FindWindow")]
 		static extern System.IntPtr FindWindow(System.String className, System.String windowName);
+		[DllImport("user32")]
+		static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
 		
 
 		[Conditional("UNITY_STANDALONE_WIN")]
@@ -19,6 +23,17 @@ public static class Native
 		{
 			IntPtr windowPtr = FindWindow(null, Application.productName);
 			SetWindowText(windowPtr, text);	
+		}
+
+		// [Conditional("UNITY_STANDALONE_WIN")]
+		public static void GetWindowName(out string title)
+		{
+			Process current = Process.GetCurrentProcess();
+			
+			StringBuilder lpString = new StringBuilder(268);
+			GetWindowText(current.Handle, lpString, 268);
+
+			title = lpString.ToString();
 		}
 	}
 	
