@@ -3906,6 +3906,8 @@ MonoBehaviour:
   controller: {fileID: 919132147689086411}
   attackRange: 0.55
   boundingRadius: 0.25
+  rangeColor: {r: 0.3948718, g: 0.9076923, b: 1, a: 0.19607843}
+  boundColor: {r: 1, g: 1, b: 1, a: 0.19607843}
 --- !u!114 &919132147689086411
 MonoBehaviour:
   m_ObjectHideFlags: 0

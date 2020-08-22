@@ -18,7 +18,7 @@ public class DefaultSetting : MonoBehaviour
         {
 #if UNITY_EDITOR
 	            
-#else
+#elif UNITY_STANDALONE
             Application.Quit(0);
 #endif
         }

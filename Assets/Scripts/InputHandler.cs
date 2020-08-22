@@ -55,7 +55,7 @@ public class InputHandler : MonoBehaviour
 		
 		foreach (KeyValuePair<KeyCode,Action> pair in upActions)
 		{
-			if (Input.GetKeyDown(pair.Key))
+			if (Input.GetKeyUp(pair.Key))
 			{
 				pair.Value.Invoke();
 			}
@@ -63,7 +63,7 @@ public class InputHandler : MonoBehaviour
 		
 		foreach (KeyValuePair<KeyCode,Action> pair in stayActions)
 		{
-			if (Input.GetKeyDown(pair.Key))
+			if (Input.GetKey(pair.Key))
 			{
 				pair.Value.Invoke();
 			}

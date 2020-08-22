@@ -8,9 +8,15 @@ public class AIHeroClient : AIBase
 	GameObject attackRangeRenderer;
 	GameObject boudingRadiusRenderer;
 
-	[Header("Temp Section")]
-	[SerializeField] float attackRange;
-	[SerializeField] float boundingRadius;
+	[Header("Temp Section")] 
+	
+	[SerializeField] float attackRange = default;
+	[SerializeField] float boundingRadius = default;
+
+	[Header("Color")] 
+	
+	[SerializeField] Color rangeColor = default;
+	[SerializeField] Color boundColor = default;
 
 	public override float AttackRange {
 		get { return attackRange; }
@@ -25,11 +31,16 @@ public class AIHeroClient : AIBase
 		return this.controller as HeroController;
 	}
 
-	bool CreateCircle(ref GameObject spawned)
+	bool CreateCircle(ref GameObject spawned, Color color)
 	{
 		if (spawned == null)
 		{
 			spawned = Instantiate(Resources.Load<GameObject>("DrawCircle"), transform);
+			Material mat = Instantiate(Resources.Load<Material>("MAT_DrawCircle"));
+			mat.SetColor("_Color", color);
+
+			spawned.GetComponent<Renderer>().sharedMaterial = mat;
+			
 			return false;
 		}
 
@@ -39,7 +50,7 @@ public class AIHeroClient : AIBase
 	const float planeOffset = 0.01f;
 	public void BeginDrawAttackRange()
 	{
-		CreateCircle(ref attackRangeRenderer);
+		CreateCircle(ref attackRangeRenderer, rangeColor);
 
 		attackRangeRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
 		attackRangeRenderer.transform.localScale = (BoundingRadius + AttackRange) * Vector3.one;
@@ -56,7 +67,7 @@ public class AIHeroClient : AIBase
 
 	public void BeginDrawBoundingRadius()
 	{
-		CreateCircle(ref boudingRadiusRenderer);
+		CreateCircle(ref boudingRadiusRenderer, boundColor);
 
 		boudingRadiusRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
 		boudingRadiusRenderer.transform.localScale = BoundingRadius * Vector3.one;

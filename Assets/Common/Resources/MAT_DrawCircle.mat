@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Range
+  m_Name: MAT_DrawCircle
   m_Shader: {fileID: 4800000, guid: 4ce9f1a7d02966142bc341f71e0f95a7, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 4
