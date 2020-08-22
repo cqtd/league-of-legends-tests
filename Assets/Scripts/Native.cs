@@ -20,6 +20,7 @@ public class Native
 
 	public class WebGL
 	{
+		//https://docs.unity3d.com/Manual/webgl-interactingwithbrowserscripting.html?_ga=2.242629824.379029621.1598020523-1939043715.1580177978
 		[DllImport("__Internal")]
 		private static extern void OpenWindow(string url);
 
