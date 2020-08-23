@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using GitHub.Unity;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -149,9 +150,13 @@ namespace Editor
 			}
 		}
 
+		[MenuItem("Build/Commit")]
 		static void CreateCommit()
 		{
-			
+			ChangesView.instance.Commit("Commit Test", "Buddy", success =>
+			{
+				Debug.Log(success);
+			});
 		}
 		
 		public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target, string blacklist = null) {
