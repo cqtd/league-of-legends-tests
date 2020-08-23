@@ -148,6 +148,11 @@ namespace Editor
 				VersionManager.IncreaseBuild();
 			}
 		}
+
+		static void CreateCommit()
+		{
+			
+		}
 		
 		public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target, string blacklist = null) {
 			foreach (DirectoryInfo dir in source.GetDirectories())
