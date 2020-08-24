@@ -33,19 +33,6 @@ public class AIHeroClient : AIBase
 		return this.controller as HeroController;
 	}
 
-	// void CreateCircle(ref GameObject spawned, Color color, int intensity = 1)
-	// {
-	// 	if (spawned == null)
-	// 	{
-	// 		spawned = Instantiate(Resources.Load<GameObject>("DrawCircle"), transform);
-	// 		Material mat = Instantiate(Resources.Load<Material>("MAT_DrawCircle"));
-	// 		
-	// 		mat.SetColor("_Color", color * intensity);
-	//
-	// 		spawned.GetComponent<Renderer>().sharedMaterial = mat;
-	// 	}
-	// }
-
 	Circle attackRangeCircle;
 	Circle boundingRadiusCircle;
 
@@ -72,43 +59,27 @@ public class AIHeroClient : AIBase
 	void BeginDrawAttackRange()
 	{
 		attackRangeCircle.BeginDraw();
-		
-		// CreateCircle(ref attackRangeRenderer, rangeColor, 2);
-		//
-		// attackRangeRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
-		// attackRangeRenderer.transform.localScale = (BoundingRadius + AttackRange) * Vector3.one;
-		//
-		// attackRangeRenderer.SetActive(true);
 	}
 
 	void EndDrawAttackRange()
 	{
 		attackRangeCircle.EndDraw();
-		
-		// if (attackRangeRenderer == null) return;
-		//
-		// attackRangeRenderer.SetActive(false);
 	}
 
 	void BeginDrawBoundingRadius()
 	{
 		boundingRadiusCircle.BeginDraw();
-		
-		// CreateCircle(ref boudingRadiusRenderer, boundColor);
-		//
-		// boudingRadiusRenderer.transform.position = transform.position + Vector3.up * planeOffset ;
-		// boudingRadiusRenderer.transform.localScale = BoundingRadius * Vector3.one;
-		//
-		// boudingRadiusRenderer.SetActive(true);
 	}
 
 	void EndDrawBoundingRadius()
 	{
 		boundingRadiusCircle.EndDraw();
+	}
+
+	protected override void MoveTo(Vector3 pos)
+	{
 		
-		// if (boudingRadiusRenderer == null) return;
-		//
-		// boudingRadiusRenderer.SetActive(false);
+		
 	}
 
 	//@TODO :: IssueOrder로 Controller 로직 다 옮기기

@@ -28,8 +28,12 @@ public abstract class AIBase : AttackableUnit
 		switch (order)
 		{
 			case GameObjectOrder.HoldPosition:
+				controller.HoldPosition();
 				break;
 			case GameObjectOrder.MoveTo:
+				controller.UpdateDestination(position);
+				// MoveTo(position);
+				
 				break;
 			case GameObjectOrder.AttackUnit:
 				break;
@@ -47,4 +51,6 @@ public abstract class AIBase : AttackableUnit
 				throw new ArgumentOutOfRangeException(nameof(order), order, null);
 		}
 	}
+
+	protected abstract void MoveTo(Vector3 pos);
 }

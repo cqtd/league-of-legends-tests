@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class CursorUtility : MonoBehaviour
 {
     public LayerMask layer;
-    public bool debugger;
-    public GameObject debugSphere;
+
+    [HideInInspector] public UnityEvent<Vector3> onRaycastSucess = new UnityEvent<Vector3>();
+    
+    // public bool debugger;
+    // public GameObject debugSphere;
     
     static CursorUtility _instance;
+    public static CursorUtility Instance {
+        get { return _instance; }
+    }
 
     Vector3 hitPoint;
     Collider hitCollider; 
@@ -35,11 +42,13 @@ public class CursorUtility : MonoBehaviour
             {
                 hitPoint = hit.point;
                 hitCollider = hit.collider;
+                
+                onRaycastSucess.Invoke(hit.point);
 
-                if (debugger)
-                {
-                    debugSphere.transform.position = hit.point;
-                }
+                // if (debugger)
+                // {
+                //     debugSphere.transform.position = hit.point;
+                // }
             }
             else
             {
@@ -49,19 +58,19 @@ public class CursorUtility : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        if (debugger)
-        {
-            if (!debugSphere.gameObject.activeSelf)
-                debugSphere.gameObject.SetActive(true);
-        }
-        else
-        {
-            if (debugSphere.gameObject.activeSelf)
-                debugSphere.gameObject.SetActive(false);
-        }
-    }
+    // void FixedUpdate()
+    // {
+    //     if (debugger)
+    //     {
+    //         if (!debugSphere.gameObject.activeSelf)
+    //             debugSphere.gameObject.SetActive(true);
+    //     }
+    //     else
+    //     {
+    //         if (debugSphere.gameObject.activeSelf)
+    //             debugSphere.gameObject.SetActive(false);
+    //     }
+    // }
 
     public static Vector3 GetMousePosition()
     {
@@ -83,13 +92,13 @@ public class CursorUtility : MonoBehaviour
         return _instance.hitCollider;
     }
 
-    public static void SetDebugger(bool isOn)
-    {
-        _instance.debugger = isOn;
-    }
-
-    public static bool GetDebugger()
-    {
-        return _instance.debugger;
-    }
+    // public static void SetDebugger(bool isOn)
+    // {
+    //     _instance.debugger = isOn;
+    // }
+    //
+    // public static bool GetDebugger()
+    // {
+    //     return _instance.debugger;
+    // }
 }

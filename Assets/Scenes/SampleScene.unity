@@ -1659,6 +1659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749449081}
   - component: {fileID: 749449082}
+  - component: {fileID: 749449083}
   m_Layer: 0
   m_Name: CursorUtility
   m_TagString: Untagged
@@ -1696,8 +1697,25 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 1536
+  onRaycastSucess:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &749449083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749449080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6979382ec5e4c8aaac3a541b48f8cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   debugger: 0
-  debugSphere: {fileID: 633179101}
+  instance: {fileID: 633179101}
+  updateTiming: 3
+  initialTiming: 3
 --- !u!1 &787661749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,7 +2247,6 @@ MonoBehaviour:
   - {fileID: 1796653241}
   - {fileID: 1581225479}
   initialCamera: 1
-  initialTarget: {fileID: 543450651944159091}
   fixCameraToTarget: 0
   fixCameraKey: 121
   onFixCameraToggle:
@@ -4354,6 +4371,7 @@ GameObject:
   - component: {fileID: 919132147689086411}
   - component: {fileID: 919132147689086412}
   - component: {fileID: 919132147689086413}
+  - component: {fileID: 919132147689086414}
   m_Layer: 9
   m_Name: Jinx
   m_TagString: Player
@@ -4391,8 +4409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90613e05751f79043abb806b62f70d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroAnimMachine: {fileID: 919132147689086412}
   rb: {fileID: 17476887}
+  heroAnimMachine: {fileID: 919132147689086412}
   stopKey: 115
   speed: 350
   velocityParameter: 0.008
@@ -4402,9 +4420,6 @@ MonoBehaviour:
   threshold: 0.5
   spawnDestination: 1
   zFightOffset: 0.01
-  debugger: 0
-  destinationSphere: {fileID: 2099977913}
-  debugOffset: 0.01
 --- !u!114 &919132147689086412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4435,6 +4450,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398fff4d49f841f7a548e2b59374353b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &919132147689086414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147689086409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a0472439ce4e38a177387fe2a4b51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugger: 0
+  instance: {fileID: 2099977913}
+  updateTiming: 0
+  initialTiming: 0
+  debugOffset: 0.01
 --- !u!1 &951011103942552706
 GameObject:
   m_ObjectHideFlags: 0

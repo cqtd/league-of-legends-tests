@@ -21,6 +21,8 @@ namespace UI
 		string cameraIndexFormat;
 		
 		HeroController controller;
+		DebuggerBase controllerDebugger;
+		DebuggerBase cursorDebugger;
 		CameraController cameraController;
 
 		void Start()
@@ -32,14 +34,16 @@ namespace UI
 		void Init()
 		{
 			controller = ObjectManager.GetPlayer().GetController();
+			controllerDebugger = controller.GetComponent<DebuggerBase>();
 			cameraController = CameraController.Instance;
+			cursorDebugger = CursorUtility.Instance.GetComponent<DebuggerBase>();
 			
 			cameraIndexFormat = cameraIndex.text;
 			cameraIndex.SetText(string.Format(cameraIndexFormat, cameraController.initialCamera + 1));
 
 			fixCamera.isOn = cameraController.fixCameraToTarget;
-			debugDestination.isOn = controller.debugger;
-			debugCursorPosition.isOn = CursorUtility.GetDebugger();
+			debugDestination.isOn = controllerDebugger.debugger;
+			debugCursorPosition.isOn = cursorDebugger.debugger;
 		}
 
 		void Bind()
@@ -62,10 +66,13 @@ namespace UI
 
 			debugDestination.OnValueChangedAsObservable().Subscribe(e =>
 			{
-				controller.debugger = e;
+				controllerDebugger.debugger = e;
 			}).AddTo(controller);
 
-			debugCursorPosition.OnValueChangedAsObservable().Subscribe(CursorUtility.SetDebugger);
+			debugCursorPosition.OnValueChangedAsObservable().Subscribe(e =>
+			{
+				cursorDebugger.debugger = e;
+			}).AddTo(cursorDebugger);
 			
 			repo1Button.onClick.AddListener(() =>
 			{
