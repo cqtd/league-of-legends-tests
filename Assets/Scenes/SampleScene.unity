@@ -2246,7 +2246,7 @@ MonoBehaviour:
   - {fileID: 963194227}
   - {fileID: 1796653241}
   - {fileID: 1581225479}
-  initialCamera: 1
+  initialCamera: 0
   fixCameraToTarget: 0
   fixCameraKey: 121
   onFixCameraToggle:

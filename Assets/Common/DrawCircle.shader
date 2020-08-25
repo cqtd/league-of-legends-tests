@@ -22,7 +22,7 @@ SubShader {
         CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma target 2.0
+            #pragma target 3.0
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
@@ -60,6 +60,7 @@ SubShader {
                 fixed4 col = tex2D(_MainTex, i.texcoord);
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 col = col * _Color;
+                
                 return col;
             }
         ENDCG

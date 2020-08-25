@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Jinx_Default
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Jinx_Cel
+  m_Shader: {fileID: 4800000, guid: 62289a6b79807664a91ca4c58ddca4c4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -70,9 +70,17 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineThickness: 0.134
+    - _OutlineThickness: 0.1
     - _Parallax: 0.02
+    - _SmoothStepParam1: 0.005
+    - _SmoothStepParam2: 0.01
     - _SmoothnessTextureChannel: 0
+    - _Spec1: 0.00127
+    - _Spec2: 0.0063
+    - _Spec3: 0.43
+    - _SpecGloss: 0
+    - _SpecMultiplier: 1
+    - _SpecPower: 750
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
@@ -80,4 +88,5 @@ Material:
     m_Colors:
     - _Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.9716981, g: 0.56376827, b: 0.6235555, a: 1}
   m_BuildTextureStacks: []
