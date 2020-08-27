@@ -76,6 +76,7 @@
             ENDCG
         }
         
+        cull back
         // shadow caster
         Pass {
             Tags {"LightMode"="ShadowCaster"}

@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.cqtd.shader.cel": {
+      "version": "file:com.cqtd.shader.cel",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.demigant.dotween": {
       "version": "1.0.0",
       "depth": 0,
