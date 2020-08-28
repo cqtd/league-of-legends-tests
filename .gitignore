@@ -12,6 +12,7 @@
 /[Mm]emoryCaptures/
 /[Ll]eague of Legends/
 /[Ww]in64/
+[[Cc]ontainer/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

@@ -81,7 +81,7 @@ public class VersionManager
         PlayerSettings.Android.bundleVersionCode = 
             SeasonVersion * 100000000 + MajorVersion * 1000000 + MinorVersion * 10000 + Build;
         
-        CheckCurrentVersion();
+        // CheckCurrentVersion();
     }
     
     [PostProcessBuild(1)]
@@ -98,6 +98,21 @@ public class VersionManager
         int MajorVersion = int.Parse(lines[1]);
         int MinorVersion = int.Parse(lines[2]);
         int Build = int.Parse(lines[3]) + 1;
+
+        return SeasonVersion.ToString("0") + "." +
+               MajorVersion.ToString("0") + "." +
+               MinorVersion.ToString("0") + "." +
+               Build.ToString("0");
+    }
+    
+    public static string GetCurrentBuildVersion()
+    {
+        string[] lines = PlayerSettings.bundleVersion.Split('.');
+
+        int SeasonVersion = int.Parse(lines[0]);
+        int MajorVersion = int.Parse(lines[1]);
+        int MinorVersion = int.Parse(lines[2]);
+        int Build = int.Parse(lines[3]);
 
         return SeasonVersion.ToString("0") + "." +
                MajorVersion.ToString("0") + "." +

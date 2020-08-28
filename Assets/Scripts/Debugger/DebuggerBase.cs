@@ -23,6 +23,7 @@ public enum EInitTiming
 
 public abstract class DebuggerBase : MonoBehaviour
 {
+#if UNITY_EDITOR || ENABLE_VISUAL_DEBUGGER
 	public bool debugger = default;
 	public GameObject instance = default;
 	
@@ -110,4 +111,5 @@ public abstract class DebuggerBase : MonoBehaviour
 	{
 		
 	}
+#endif
 }

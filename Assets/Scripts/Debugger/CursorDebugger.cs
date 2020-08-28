@@ -3,6 +3,7 @@
 [RequireComponent(typeof(CursorUtility))]
 class CursorDebugger : DebuggerBase
 {
+#if UNITY_EDITOR || ENABLE_VISUAL_DEBUGGER
 	CursorUtility utility;
 	
 	protected override void OnInitialized()
@@ -31,4 +32,5 @@ class CursorDebugger : DebuggerBase
 		updateTiming = EUpdateTiming.None;
 		initialTiming = EInitTiming.None;
 	}
+#endif
 }

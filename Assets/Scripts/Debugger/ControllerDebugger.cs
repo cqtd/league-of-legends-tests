@@ -3,6 +3,7 @@
 [RequireComponent(typeof(ControllerBase))]
 public class ControllerDebugger : DebuggerBase
 {
+#if UNITY_EDITOR || ENABLE_VISUAL_DEBUGGER
 	[Header("Controller")]
 	public float debugOffset = 0.01f;
 
@@ -21,4 +22,5 @@ public class ControllerDebugger : DebuggerBase
 		
 		instance.transform.position = controller.Destination + Vector3.up * debugOffset;
 	}
+#endif
 }
