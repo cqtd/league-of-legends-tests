@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 
 public class AIHeroClient : AIBase
 {
@@ -30,6 +31,10 @@ public class AIHeroClient : AIBase
 
 	public HeroController GetController()
 	{
+		#if UNITY_EDITOR
+		Assert.IsTrue(this.controller is HeroController);
+		#endif
+		
 		return this.controller as HeroController;
 	}
 
@@ -55,7 +60,6 @@ public class AIHeroClient : AIBase
 			.Build();
 	}
 
-	const float planeOffset = 0.01f;
 	void BeginDrawAttackRange()
 	{
 		attackRangeCircle.BeginDraw();
@@ -79,10 +83,8 @@ public class AIHeroClient : AIBase
 	protected override void MoveTo(Vector3 pos)
 	{
 		
-		
 	}
 
-	//@TODO :: IssueOrder로 Controller 로직 다 옮기기
 	public void Possess()
 	{
 		InputHandler.AddBindings(KeyCode.Space, ETriggerType.DOWN, BeginDrawBoundingRadius);

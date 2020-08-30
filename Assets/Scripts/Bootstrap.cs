@@ -19,7 +19,7 @@ public class Bootstrap : MonoBehaviour
 	{
 		foreach (HeroRule heroRule in heroes)
 		{
-			AIHeroClient instance =SpawnManager.CreateHero(heroRule.hero.heroPrefab);
+			AIHeroClient instance = SpawnManager.CreateHero(heroRule.hero.heroPrefab);
 
 			if (heroRule.localPlayer)
 			{

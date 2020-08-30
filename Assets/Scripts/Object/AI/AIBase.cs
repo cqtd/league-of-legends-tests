@@ -28,29 +28,40 @@ public abstract class AIBase : AttackableUnit
 		switch (order)
 		{
 			case GameObjectOrder.HoldPosition:
+			case GameObjectOrder.Stop:
 				controller.HoldPosition();
 				break;
 			case GameObjectOrder.MoveTo:
 				controller.UpdateDestination(position);
-				// MoveTo(position);
 				
 				break;
 			case GameObjectOrder.AttackUnit:
 				break;
 			case GameObjectOrder.AutoAttackPet:
+				if (Pet == null)
+				{
+					
+					break;
+				}
 				break;
 			case GameObjectOrder.AutoAttack:
 				break;
 			case GameObjectOrder.MovePet:
+				if (Pet == null)
+				{
+					
+					break;
+				}
 				break;
 			case GameObjectOrder.AttackTo:
 				break;
-			case GameObjectOrder.Stop:
-				break;
+			
 			default:
 				throw new ArgumentOutOfRangeException(nameof(order), order, null);
 		}
 	}
 
 	protected abstract void MoveTo(Vector3 pos);
+
+	public AIBase Pet { get; protected set; }
 }
