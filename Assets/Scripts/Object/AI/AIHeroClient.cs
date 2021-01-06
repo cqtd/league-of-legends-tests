@@ -8,18 +8,20 @@ public class AIHeroClient : AIBase
 	public string ChampionName  { get; protected set; }
 	public int NeutralMinionKillCount  { get; protected set; }
 
-	GameObject attackRangeRenderer;
-	GameObject boudingRadiusRenderer;
+	private GameObject attackRangeRenderer;
+	private GameObject boudingRadiusRenderer;
 
 	[Header("Temp Section")] 
 	
-	[SerializeField] float attackRange = default;
-	[SerializeField] float boundingRadius = default;
+	[SerializeField]
+	private float attackRange = default;
+	[SerializeField] private float boundingRadius = default;
 
 	[Header("Color")] 
 	
-	[SerializeField] Color rangeColor = default;
-	[SerializeField] Color boundColor = default;
+	[SerializeField]
+	private Color rangeColor = default;
+	[SerializeField] private Color boundColor = default;
 
 	public override float AttackRange {
 		get { return attackRange; }
@@ -38,10 +40,10 @@ public class AIHeroClient : AIBase
 		return this.controller as HeroController;
 	}
 
-	Circle attackRangeCircle;
-	Circle boundingRadiusCircle;
+	private Circle attackRangeCircle;
+	private Circle boundingRadiusCircle;
 
-	void Awake()
+	private void Awake()
 	{
 		Circle.Builder builder;
 		
@@ -60,22 +62,22 @@ public class AIHeroClient : AIBase
 			.Build();
 	}
 
-	void BeginDrawAttackRange()
+	private void BeginDrawAttackRange()
 	{
 		attackRangeCircle.BeginDraw();
 	}
 
-	void EndDrawAttackRange()
+	private void EndDrawAttackRange()
 	{
 		attackRangeCircle.EndDraw();
 	}
 
-	void BeginDrawBoundingRadius()
+	private void BeginDrawBoundingRadius()
 	{
 		boundingRadiusCircle.BeginDraw();
 	}
 
-	void EndDrawBoundingRadius()
+	private void EndDrawBoundingRadius()
 	{
 		boundingRadiusCircle.EndDraw();
 	}
@@ -105,7 +107,7 @@ public class AIHeroClient : AIBase
 		// 우클릭 유지
 		InputHandler.AddBindings(EMouseButton.Right, ETriggerType.STAY, () =>
 		{
-			var underMouseObj = CursorUtility.GetUnderMouseObject();
+			Collider underMouseObj = CursorUtility.GetUnderMouseObject();
 			if (underMouseObj != null && underMouseObj.TryGetComponent(typeof(AttackableUnit), out var unit))
 			{
 				IssueOrder(GameObjectOrder.AttackUnit, underMouseObj.transform.position, unit as AttackableUnit, false, unit is AIMinion);

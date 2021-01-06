@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+	<asset>
+		<contributor>
+			<authoring_tool>lol2dae v1.3</authoring_tool>
+		</contributor>
+		<created>2021-01-05T11:01:46Z</created>
+		<modified>2021-01-05T11:01:46Z</modified>
+		<unit meter="0.01" name="centimeter"/>
+		<up_axis>Y_UP</up_axis>
+	</asset>
+
+	<library_effects>
+		<effect id="DefaultLambert">
+			<profile_COMMON>
+				<technique sid="Base">
+					<lambert>
+						<emission>
+							<color>0.0 0.0 0.0 1.0</color>
+						</emission>
+						<ambient>
+							<color>0.0 0.0 0.0 1.0</color>
+						</ambient>
+						<diffuse>
+							<color>0.5 0.5 0.5 1.0</color>
+						</diffuse>
+					</lambert>
+				</technique>
+			</profile_COMMON>
+		</effect>
+	</library_effects>
+	<library_materials>
+		<material id="DefaultMaterial">
+			<instance_effect url="#DefaultLambert"/>
+		</material>
+	</library_materials>
+
+	<library_geometries>
+		<geometry id="Mesh" name="Mesh">
+			<mesh>
+				<source id="MeshPosition">
+					<float_array id="MeshPositionArray" count="174">
+					-0.8625 210.538 52.691 -0.567187 224.799 59.819 0.183594 211.669 50.4004 -4.42422 162.286 25.9492 -5.50234 105.858 7.4959 -1.01172 135.727 15.2924 -5.10703 135.572 15.8346 -0.596875 106.043 6.84688 -2.53203 211.841 50.9307 -1.02266 162.414 25.4988 -4.7625 0.470792 -6.14512 -5.37969 61.4932 0.311914 -2.46563 105.037 11.3207 -4.42422 162.286 25.9492 -5.50234 105.858 7.4959 -5.10703 135.572 15.8346 0.704687 61.7229 -0.492969 -1.62422 61.1221 5.15762 2.95391 0.761954 -7.16641 0 0 -0 -0.654688 176.694 31.7721 -4.22266 176.559 32.2439 -4.22266 176.559 32.2439 -2.02031 175.265 34.7824 -5.97891 178.611 31.9981 -4.22266 176.559 32.2439 1.47344 177.103 34.6514 -6.36563 210.424 48.2416 1.11797 179.001 30.81 0.183594 211.669 50.4004 -0.8625 210.538 52.691 -2.24844 211.763 45.6602 -0.790625 206.51 54.6016 -2.53203 211.841 50.9307 -2.02031 175.265 34.7824 -5.97891 178.611 31.9981 -5.06563 177.119 34.9816 3.83203 207.881 51.9303 -2.53203 211.841 50.9307 -6.36563 210.424 48.2416 -7.87734 182.423 33.3932 -5.37031 207.979 52.3807 -6.525 180.1 37.841 -1.59219 178.528 40.615 -7.87734 182.423 33.3932 2.73281 183.014 31.617 -3.07188 183.69 30.641 2.86562 210.992 46.643 -2.7625 179.429 30.1539 -0.654688 176.694 31.7721 -4.22266 176.559 32.2439 -1.77813 176.104 36.8633 -0.8625 210.538 52.691 3.29531 180.061 37.34 -4.7625 0.470792 -6.14512 -2.32031 161.207 28.4404 -2.57266 134.565 18.9404 -5.37969 61.4932 0.311914 
+					</float_array>
+					<technique_common>
+						<accessor source="#MeshPositionArray" count="58" stride="3">
+						<param name="X" type="float"/>
+						<param name="Y" type="float"/>
+						<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+
+				<source id="MeshNormal">
+					<float_array id="MeshNormalArray" count="174">
+					0.0764081 0.377855 0.922706 0.0936713 0.853137 0.513209 0.488243 0.869721 0.0721315 -0.989427 0.0650861 -0.129611 -0.926279 0.0764492 -0.369002 0.789829 0.219909 -0.572547 -0.926131 0.127067 -0.355155 0.789373 0.178216 -0.587477 -0.513142 0.826185 0.232604 0.914341 0.150597 -0.375899 -0.925281 0.0306439 -0.378044 -0.92553 0.0397436 -0.376584 0.136022 -0.210084 0.968175 -0.989427 0.0650861 -0.129611 -0.926279 0.0764492 -0.369002 -0.926131 0.127067 -0.355155 0.789759 0.122821 -0.600995 0.134679 -0.116834 0.983977 0.378827 0.114507 -0.918356 0.133771 -0.0797963 0.987794 0.458205 -0.555468 -0.693905 -0.61786 -0.424707 -0.66172 -0.61786 -0.424707 -0.66172 0.0399553 -0.878066 0.476869 -0.775424 -0.370953 -0.510991 -0.61786 -0.424707 -0.66172 0.719991 -0.690731 -0.0671106 -0.774179 0.60132 -0.197638 0.483188 -0.281283 -0.829101 0.488243 0.869721 0.0721315 0.0764081 0.377855 0.922706 -0.107759 0.908556 -0.403627 0.0362439 -0.149187 0.988145 -0.513142 0.826185 0.232604 0.0399553 -0.878066 0.476869 -0.775424 -0.370953 -0.510991 -0.655848 -0.734892 0.172618 0.829833 0.313385 0.461701 -0.513142 0.826185 0.232604 -0.774179 0.60132 -0.197638 -0.960718 -0.0293899 -0.275967 -0.72347 0.206717 0.65868 -0.746614 -0.497797 0.441323 0.0233569 -0.671771 0.740391 -0.960718 -0.0293899 -0.275967 0.852752 0.00753237 -0.522262 -0.18328 0.289067 -0.9396 0.573792 0.70243 -0.421135 -0.149273 -0.268392 -0.951674 0.458205 -0.555468 -0.693905 -0.61786 -0.424707 -0.66172 0.00742658 -0.873182 0.487337 0.0764081 0.377855 0.922706 0.786257 -0.484781 0.383128 -0.925281 0.0306439 -0.378044 0.135704 -0.372159 0.918195 0.136145 -0.30524 0.942493 -0.92553 0.0397436 -0.376584 
+					</float_array>
+					<technique_common>
+						<accessor source="#MeshNormalArray" count="58" stride="3">
+						<param name="X" type="float"/>
+						<param name="Y" type="float"/>
+						<param name="Z" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+
+				<source id="MeshTexture">
+					<float_array id="MeshTextureArray" count="116">
+					0.832998 0.974583 0.773852 0.974583 0.833292 0.996122 0.983395 0.89263 0.983486 0.825895 0.987628 0.860533 0.983445 0.860533 0.987586 0.825895 0.832817 0.953107 0.987678 0.89263 0.997271 0.706286 0.997239 0.775472 0.992394 0.825895 0.997111 0.89263 0.997203 0.825895 0.997161 0.860533 0.98755 0.775472 0.992394 0.775472 0.987518 0.706286 0.992394 0.706286 0.987715 0.913844 0.997073 0.913844 0.983357 0.913844 0.992394 0.913844 0.99406 0.915809 0.998862 0.915282 0.99406 0.941425 0.895501 0.917 0.99406 0.932286 0.886224 0.928482 0.885897 0.946029 0.895501 0.923977 0.895501 0.951707 0.885694 0.919669 0.998862 0.951718 0.99406 0.971109 0.99406 0.962919 0.895501 0.940304 0.885694 0.971426 0.895501 0.9723 0.987898 0.971183 0.895501 0.964455 0.987898 0.963005 0.987898 0.951722 0.987898 0.915883 0.987898 0.932209 0.987898 0.924116 0.895501 0.931005 0.99406 0.924126 0.998862 0.932855 0.998862 0.970582 0.99406 0.951723 0.885897 0.951563 0.987898 0.941362 0.983554 0.706286 0.992394 0.89263 0.992394 0.860533 0.983523 0.775472 
+					</float_array>
+					<technique_common>
+						<accessor source="#MeshTextureArray" count="58" stride="2">
+						<param name="S" type="float"/>
+						<param name="T" type="float"/>
+						</accessor>
+					</technique_common>
+				</source>
+
+				<vertices id="MeshVertices">
+					<input semantic="POSITION" source="#MeshPosition"/>
+				</vertices>
+
+				<triangles count="75" material="DefaultMaterial">
+				<input semantic="VERTEX" offset="0" source="#MeshVertices"/>
+				<input semantic="NORMAL" offset="0" source="#MeshNormal"/>
+				<input semantic="TEXCOORD" offset="0" set="0" source="#MeshTexture"/>
+				<p>
+				21 13 23 23 13 55 13 56 55 15 56 13 56 15 12 12 15 14 12 14 17 17 14 11 9 23 55 56 9 55 5 9 56 56 12 5 5 12 7 17 7 12 16 7 17 19 16 17 17 11 19 19 11 10 20 23 9 20 9 22 22 9 3 5 3 9 6 3 5 5 7 6 6 7 4 7 16 4 4 16 57 16 18 57 18 16 19 57 18 54 44 46 24 24 46 48 46 28 48 45 28 46 46 47 45 31 47 46 31 46 27 27 46 44 24 48 25 25 48 49 49 48 28 26 49 28 45 26 28 53 26 45 45 37 53 47 37 45 29 37 47 31 29 47 33 29 31 33 31 27 34 49 26 26 51 34 53 51 26 43 51 53 53 32 43 37 32 53 37 30 32 30 37 29 51 36 34 51 42 36 43 42 51 43 32 42 42 32 41 52 41 32 38 41 52 41 38 39 39 40 41 34 36 50 50 36 35 36 42 35 35 42 40 41 40 42 1 8 0 1 2 8 1 0 2 
+				</p>
+				</triangles>
+			</mesh>
+		</geometry>
+	</library_geometries>
+
+	<library_controllers>
+		<controller id="MeshSkin" name="MeshSkin">
+			<skin source="#Mesh">
+				<bind_shape_matrix>
+				1 0 0 0
+				0 1 0 0
+				0 0 1 0
+				0 0 0 1
+				</bind_shape_matrix>
+
+				<source id="MeshSkinJoints">
+					<Name_array id="MeshSkinJointsArray" count="3">
+					Root Grass1 Ground 
+					</Name_array>
+					<technique_common>
+						<accessor source="#MeshSkinJointsArray" count="3" stride="1">
+							<param name="JOINT" type="Name"></param>
+						</accessor>
+					</technique_common>
+				</source>
+
+				<source id="MeshSkinBindPoses">
+					<float_array id="MeshSkinBindPosesArray" count="48">
+					-1 -0 -0 -0 0 1 0 0 -0 -0 -1 -0 0 0 0 1 -1 -0 -0 -0 0 1 0 -75.6573 -0 -0 -1 -0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 
+					</float_array>
+					<technique_common>
+						<accessor source="#MeshSkinBindPosesArray" count="3" stride="16">
+							<param name="TRANSFORM" type="float4x4"></param>
+						</accessor>
+					</technique_common>
+				</source>
+
+				<source id="MeshSkinWeights">
+					<float_array id="MeshSkinWeightsArray" count="137">
+					1 0.981158 0.0188418 0.981158 0.0188418 0.980254 0.0197462 0.829304 0.169486 0.00121033 0.571327 0.405244 0.0234285 0.679549 0.316983 0.00346738 0.679549 0.316983 0.00346738 0.580519 0.400396 0.0190849 0.979849 0.0201511 0.842267 0.156718 0.00101495 0.975043 0.0183107 0.00664657 0.390294 0.317883 0.291823 0.590158 0.395312 0.0145302 0.829304 0.169486 0.00121033 0.571327 0.405244 0.0234285 0.679549 0.316983 0.00346738 0.393816 0.307891 0.298293 0.396939 0.304032 0.299029 0.974838 0.0162967 0.00886536 0.980692 0.0151426 0.00416505 0.917623 0.082377 0.913658 0.0863421 0.913658 0.0863421 0.920015 0.079985 0.913665 0.0863348 0.913658 0.0863421 0.926948 0.0730516 0.975417 0.024583 0.921208 0.0787918 0.980254 0.0197462 0.981158 0.0188418 0.97528 0.02472 0.980988 0.0190119 0.979849 0.0201511 0.920015 0.079985 0.913665 0.0863348 0.918947 0.0810526 0.980967 0.0190333 0.979849 0.0201511 0.975417 0.024583 0.919307 0.0806935 0.978166 0.0218341 0.927032 0.0729682 0.937121 0.0628788 0.919307 0.0806935 0.930595 0.0694055 0.9218 0.0782005 0.977557 0.0224434 0.915288 0.0847119 0.917623 0.082377 0.913658 0.0863421 0.925785 0.0742153 0.981158 0.0188418 0.939017 0.0609831 0.975043 0.0183107 0.00664657 0.8504 0.148708 0.000892405 0.679549 0.316983 0.00346738 0.390294 0.317883 0.291823 
+					</float_array>
+					<technique_common>
+						<accessor source="#MeshSkinWeightsArray" count="137" stride="1">
+							<param name="WEIGHT" type="float"></param>
+						</accessor>
+					</technique_common>
+				</source>
+
+				<joints>
+					<input semantic="JOINT" source="#MeshSkinJoints"></input>
+					<input semantic="INV_BIND_MATRIX" source="#MeshSkinBindPoses"></input>
+				</joints>
+
+				<vertex_weights count="58">
+					<input semantic="JOINT" source="#MeshSkinJoints" offset="0"></input>
+					<input semantic="WEIGHT" source="#MeshSkinWeights" offset="1"></input>
+					<vcount>
+					2 2 2 3 3 3 3 3 2 3 3 3 3 3 3 3 3 3 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 
+					</vcount>
+					<v>
+					1 1 0 2 1 3 0 4 1 5 0 6 1 7 0 8 2 9 1 10 0 11 2 12 1 13 0 14 2 15 1 16 0 17 2 18 1 19 0 20 2 21 1 22 0 23 1 24 0 25 2 26 2 27 0 28 1 29 0 30 2 31 1 32 1 33 0 34 2 35 1 36 0 37 2 38 1 39 0 40 2 41 1 42 0 43 2 44 0 45 2 46 1 47 0 48 1 49 2 50 2 51 0 52 1 53 2 54 0 55 1 56 1 57 0 58 1 59 0 60 1 61 0 62 1 63 0 64 1 65 0 66 1 67 0 68 1 69 0 70 1 71 0 72 1 73 0 74 1 75 0 76 1 77 0 78 1 79 0 80 1 81 0 82 1 83 0 84 1 85 0 86 1 87 0 88 1 89 0 90 1 91 0 92 1 93 0 94 1 95 0 96 1 97 0 98 1 99 0 100 1 101 0 102 1 103 0 104 1 105 0 106 1 107 0 108 1 109 0 110 1 111 0 112 1 113 0 114 1 115 0 116 1 117 0 118 1 119 0 120 1 121 0 122 1 123 0 124 2 125 0 126 1 127 1 128 0 129 2 130 1 131 0 132 2 133 0 134 2 135 1 136 
+					</v>
+				</vertex_weights>
+			</skin>
+		</controller>
+	</library_controllers>
+
+	<library_visual_scenes>
+		<visual_scene id="DefaultScene">
+			<node id="Root" name="Root" sid="Root" type="JOINT">
+				<translate sid="translate">0 0 0</translate>
+				<rotate sid ="rotateX">1 0 0 -180</rotate>
+				<rotate sid="rotateY">0 1 0 0</rotate>
+				<rotate sid ="rotateZ">0 0 1 180</rotate>
+				<scale sid="scale">1 1 1</scale>
+			<node id="Grass1" name="Grass1" sid="Grass1" type="JOINT">
+				<translate sid="translate">0 75.6573 0</translate>
+				<rotate sid ="rotateX">1 0 0 -0</rotate>
+				<rotate sid="rotateY">0 1 0 0</rotate>
+				<rotate sid ="rotateZ">0 0 1 0</rotate>
+				<scale sid="scale">1 1 1</scale>
+			</node>
+			</node>
+			<node id="Ground" name="Ground" sid="Ground" type="JOINT">
+				<translate sid="translate">0 0 0</translate>
+				<rotate sid ="rotateX">1 0 0 -0</rotate>
+				<rotate sid="rotateY">0 1 0 0</rotate>
+				<rotate sid ="rotateZ">0 0 1 0</rotate>
+				<scale sid="scale">1 1 1</scale>
+			</node>
+
+			<node id="Model" name="Model">
+				<instance_controller url="#MeshSkin">
+					<skeleton>#DefaultScene</skeleton>
+					<bind_material>
+						<technique_common>
+							<instance_material symbol="DefaultMaterial" target="#DefaultMaterial"/>
+						</technique_common>
+					</bind_material>
+				</instance_controller>
+			</node>
+		</visual_scene>
+	</library_visual_scenes>
+	<scene>
+		<instance_visual_scene url="#DefaultScene"/>
+	</scene>
+</COLLADA>

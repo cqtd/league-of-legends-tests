@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c3358ea1b54a6ab8279cde957c4bc7, type: 3}
+  m_Name: yasuo
+  m_EditorClassIdentifier: 
+  m_controller: {fileID: 9100000, guid: 7c0941b269dea054da758dca5a337ad3, type: 2}
+  m_idleAnimations:
+  - {fileID: 1827226128182048838, guid: 93deaf13659ef7f42956f6a299752076, type: 3}
+  m_walkAnimation: {fileID: 0}
